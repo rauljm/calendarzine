@@ -13,7 +13,7 @@ class ScheduleController:
         self.room_controller = RoomController()
         self.user_controller = UserController()
 
-    def create_schedule(self, date, user_name, room_name):
+    def create_schedule(self, date, user_name, room_name, description):
         try:
             date = datetime.strptime(date, "%Y-%m-%d")
         except ValueError as error:
@@ -26,7 +26,7 @@ class ScheduleController:
         if not room:
             raise RoomNotFoundError()
 
-        schedule = Schedule(date=date, user=user, room=room)
+        schedule = Schedule(date=date, user=user, room=room, description=description)
         db.session.add(schedule)
         db.session.commit()
 

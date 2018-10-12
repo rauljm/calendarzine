@@ -6,7 +6,7 @@ class UserControllerTestCase(BaseTests):
 
     def test_common(self):
         room_controller = RoomController()
-        room_controller.create_room("New Room Controller")
+        room_controller.create_room("New Room Controller", "Description")
 
         room_by_name = room_controller.get_room_by_name("New Room Controller")
         self.assertEqual(room_by_name.name, "New Room Controller")
@@ -16,7 +16,7 @@ class UserControllerTestCase(BaseTests):
 
     def test_remove_room(self):
         room_controller = RoomController()
-        room_controller.create_room("New Room Controller")
+        room_controller.create_room("New Room Controller", "Description")
 
         room_by_name = room_controller.get_room_by_name("New Room Controller")
         self.assertTrue(room_by_name)
