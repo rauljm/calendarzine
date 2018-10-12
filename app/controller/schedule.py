@@ -60,4 +60,4 @@ class ScheduleController:
             schedule.description = description
             db.session.commit()
             return
-        raise ScheduleNotFoundError
+        raise ScheduleNotFoundError()
