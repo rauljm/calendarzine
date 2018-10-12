@@ -4,7 +4,7 @@ from app.models import db
 from app.models.schedule import Schedule
 from app.controller.room import RoomController
 from app.controller.user import UserController
-from app.exceptions.exceptions import UserNotFoundError, RoomNotFoundError
+from app.exceptions.exceptions import UserNotFoundError, RoomNotFoundError, ScheduleNotFoundError
 
 
 class ScheduleController:
@@ -49,3 +49,15 @@ class ScheduleController:
             raise error
 
         return Schedule.query.filter(Schedule.date == date.date()).all()
+
+    def get_schedule_by_room_name(self, room_name):
+        room = self.room_controller.get_room_by_name(room_name)
+        return room.schedules
+
+    def alter_description_by_id(self, _id, description):
+        schedule = Schedule.query.filter(Schedule.id == _id).first()
+        if schedule:
+            schedule.description = description
+            db.session.commit()
+            return
+        raise ScheduleNotFoundError

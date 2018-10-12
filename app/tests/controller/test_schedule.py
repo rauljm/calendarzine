@@ -45,3 +45,18 @@ class ScheduleControllerTestCase(BaseTests):
     def test_create_schedule_to_room_that_not_exist(self):
         with self.assertRaises(RoomNotFoundError):
             self.schedule_controller.create_schedule("2018-10-12", "User to Schedule", "Room that not exist")
+
+    def test_get_schedules_by_room_name(self):
+        self.schedule_controller.create_schedule("2018-10-13", "User to Schedule", "Room to Schedule")
+        schedules = self.schedule_controller.get_schedule_by_room_name("Room to Schedule")
+        self.assertEqual(schedules[0].room.name, "Room to Schedule")
+        self.assertEqual(schedules[1].room.name, "Room to Schedule")
+
+    def test_alter_description(self):
+        schedule = self.schedule_controller.get_schedule_by_id(1)
+        self.assertFalse(schedule.description)
+
+        self.schedule_controller.alter_description_by_id(1, "New description")
+
+        schedule = self.schedule_controller.get_schedule_by_id(1)
+        self.assertEqual(schedule.description, "New description")

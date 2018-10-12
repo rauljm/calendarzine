@@ -12,3 +12,5 @@ class Schedule(db.Model):
 
     room_id = db.Column(db.Integer, db.ForeignKey('room.id'))  # this is not nullable because of a bug in sqlite :(
     room = db.relationship('Room', backref=db.backref('schedules', lazy=True))
+
+    description = db.Column(db.String(50), nullable=True)

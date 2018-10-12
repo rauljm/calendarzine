@@ -6,3 +6,7 @@ class UserNotFoundError(Exception):
 
 class RoomNotFoundError(Exception):
     pass
+
+
+class ScheduleNotFoundError(Exception):
+    pass
