@@ -20,3 +20,8 @@ class RoomController:
         if room:
             return room
         return False
+
+    def delete_room_by_id(self, _id):
+        room = self.get_room_by_id(_id)
+        db.session.delete(room)
+        db.session.commit()
