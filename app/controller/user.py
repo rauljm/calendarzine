@@ -15,8 +15,8 @@ class UserController:
             return user
         return False
 
-    def get_user_by_id(self, id):
-        user = User.query.filter(User.id == id).first()
+    def get_user_by_id(self, _id):
+        user = User.query.filter(User.id == _id).first()
         if user:
             return user
         return False
