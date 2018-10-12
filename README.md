@@ -12,6 +12,6 @@ Instalando:
 
 A fazer..
 
-export FLASK_APP="create_app.py"
+export FLASK_APP="app/create_app.py"
 mkvirtualenv -p python3 calendarzine
 pip3 install -r requirements.txt
