@@ -4,8 +4,8 @@ from app.models.room import Room
 
 class RoomController:
 
-    def create_room(self, name):
-        room = Room(name=name)
+    def create_room(self, name, description):
+        room = Room(name=name, description=description)
         db.session.add(room)
         db.session.commit()
 
