@@ -2,7 +2,7 @@ from datetime import datetime
 
 from app.controller.schedule import ScheduleController
 from app.tests import BaseTests
-from app.exceptions.exceptions import UserNotFoundError, RoomNotFoundError
+from app.exceptions.exceptions import UserNotFoundError, RoomNotFoundError, ScheduleNotFoundError
 
 
 class ScheduleControllerTestCase(BaseTests):
@@ -25,7 +25,8 @@ class ScheduleControllerTestCase(BaseTests):
     def test_remove_schedule(self):
         self.assertTrue(self.schedule_controller.get_schedule_by_id(1))
         self.schedule_controller.remove_schedule_by_id(1)
-        self.assertFalse(self.schedule_controller.get_schedule_by_id(1))
+        with self.assertRaises(ScheduleNotFoundError):
+            self.schedule_controller.get_schedule_by_id(1)
 
     def test_get_schedules_by_date(self):
         self.schedule_controller.room_controller.create_room("Room to Schedule 1", "Description")
@@ -49,6 +50,10 @@ class ScheduleControllerTestCase(BaseTests):
             self.schedule_controller.create_schedule(
                 "2018-10-12", "User to Schedule", "Room that not exist", "Description"
             )
+
+    def test_get_schedule_that_not_exist(self):
+        with self.assertRaises(ScheduleNotFoundError):
+            self.schedule_controller.get_schedule_by_id(2)
 
     def test_get_schedules_by_room_name(self):
         self.schedule_controller.create_schedule("2018-10-13", "User to Schedule", "Room to Schedule", "Description")
