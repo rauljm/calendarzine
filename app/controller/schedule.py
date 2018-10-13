@@ -34,13 +34,15 @@ class ScheduleController:
         schedule = Schedule.query.filter(Schedule.id == _id).first()
         if schedule:
             return schedule
-        return False
+        raise ScheduleNotFoundError()
 
     def remove_schedule_by_id(self, _id):
         schedule = Schedule.query.filter(Schedule.id == _id).first()
         if schedule:
             db.session.delete(schedule)
             db.session.commit()
+            return
+        raise ScheduleNotFoundError()
 
     def get_schedule_by_date(self, date):
         try:
