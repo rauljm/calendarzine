@@ -22,16 +22,6 @@ class RoomGetByIdView(Resource):
             return "", 204
         return {"name": room.name, "id": room.id, "description": room.description}, 200
 
-
-class RoomGetByNameView(Resource):
-
-    def get(self, name):
-        try:
-            room = RoomController().get_room_by_name(name)
-        except RoomNotFoundError:
-            return "", 204
-        return {"name": room.name, "id": room.id, "description": room.description}, 200
-
     def delete(self, _id):
         try:
             RoomController().delete_room_by_id(_id)
@@ -46,3 +36,13 @@ class RoomGetByNameView(Resource):
         except RoomNotFoundError:
             return "", 204
         return "", 200
+
+
+class RoomGetByNameView(Resource):
+
+    def get(self, name):
+        try:
+            room = RoomController().get_room_by_name(name)
+        except RoomNotFoundError:
+            return "", 204
+        return {"name": room.name, "id": room.id, "description": room.description}, 200

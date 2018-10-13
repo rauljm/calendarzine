@@ -16,8 +16,8 @@ def create_app(testing=False):
     api.add_resource(UserGetByNameView, "/user/<string:name>")
 
     api.add_resource(RoomView, "/room/")
-    api.add_resource(RoomGetByIdView, "/room/id")
-    api.add_resource(RoomGetByNameView, "/room/name")
+    api.add_resource(RoomGetByIdView, "/room/<int:_id>")
+    api.add_resource(RoomGetByNameView, "/room/<string:name>")
 
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/app.db'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
