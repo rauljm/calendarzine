@@ -1,5 +1,6 @@
 from app.models import db
 from app.models.room import Room
+from app.exceptions.exceptions import RoomNotFoundError
 
 
 class RoomController:
@@ -13,16 +14,26 @@ class RoomController:
         room = Room.query.filter(Room.name == name).first()
         if room:
             return room
-        return False
+        raise RoomNotFoundError()
 
     def get_room_by_id(self, _id):
         room = Room.query.filter(Room.id == _id).first()
         if room:
             return room
-        return False
+        raise RoomNotFoundError()
 
     def delete_room_by_id(self, _id):
         room = self.get_room_by_id(_id)
         if room:
             db.session.delete(room)
             db.session.commit()
+            return
+        raise RoomNotFoundError()
+
+    def alter_description_by_id(self, _id, description):
+        room = Room.query.filter(Room.id == _id).first()
+        if room:
+            room.description = description
+            db.session.commit()
+            return
+        raise RoomNotFoundError()
