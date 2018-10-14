@@ -8,6 +8,12 @@ Prover uma API para:
 - Lista e filtrar agendamentos por data e sala.
 - Editar e remover salas de reuniões.
 
+#### Diagramação da aplicação
+---
+
+![Caption for the picture.](calendarzine.png)
+
+
 ##### Instalando:
 ---
 
@@ -127,7 +133,3 @@ Atualizando a descrição de um agendamento:
 ```
 curl http://localhost:5000/schedule/1 -X PUT -d '{"description": "Descricao Agendamento Renovado"}' -H "Content-Type: application/json"
 ```
-
-#### Diagramação da aplicação
-
-![Caption for the picture.](calendarzine.png)
