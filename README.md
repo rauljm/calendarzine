@@ -67,15 +67,17 @@ Para rodar os testes do projeto, digite o seguinte comando:
 nosetests --with-coverage --cover-package=app
 ```
 
-A cobertura de testes atual do projeto está em 94%.
+A cobertura de testes atual do projeto está em 96%.
 
 ```
+.....................................
+Name                           Stmts   Miss  Cover
 --------------------------------------------------
 app/__init__.py                    0      0   100%
 app/controller/__init__.py         0      0   100%
-app/controller/room.py            33      1    97%
-app/controller/schedule.py        52      6    88%
-app/controller/user.py            17      0   100%
+app/controller/room.py            39      0   100%
+app/controller/schedule.py        62      1    98%
+app/controller/user.py            21      0   100%
 app/create_app.py                 28      0   100%
 app/exceptions/__init__.py         0      0   100%
 app/exceptions/exceptions.py       6      0   100%
@@ -88,9 +90,10 @@ app/views/room.py                 37      2    95%
 app/views/schedule.py             59      8    86%
 app/views/user.py                 20      0   100%
 --------------------------------------------------
-TOTAL                            275     17    94%
+TOTAL                            295     11    96%
 ----------------------------------------------------------------------
-Ran 37 tests in 1.499s
+Ran 37 tests in 1.585s
+
 
 ```
 #### Utilizando a aplicação
