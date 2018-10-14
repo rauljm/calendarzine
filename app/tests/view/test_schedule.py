@@ -113,3 +113,30 @@ class ScheduleTestCase(BaseTests):
 
         self.assertEqual(payload[0]["date"], "2018-10-13")
         self.assertEqual(payload[1]["date"], "2018-10-13")
+
+    def test_get_schedules_by_room(self):
+        self.client.post(
+            "/schedule/", json={
+                "user_name": "Raul Martins", "description": "New Schedule",
+                "room_name": "Sala", "date": "2018-10-13"
+            }
+        )
+        self.client.post(
+            "/schedule/", json={
+                "user_name": "Raul Martins", "description": "New Schedule 2",
+                "room_name": "Sala", "date": "2018-10-13"
+            }
+        )
+
+        response = self.client.get("/schedule/room/Sala")
+        payload = response.json.get("schedules")
+        self.assertEqual(len(payload), 2)
+
+        self.assertEqual(payload[0]["id"], 1)
+        self.assertEqual(payload[1]["id"], 2)
+
+        self.assertEqual(payload[0]["room_name"], "Sala")
+        self.assertEqual(payload[1]["room_name"], "Sala")
+
+        self.assertEqual(payload[0]["date"], "2018-10-13")
+        self.assertEqual(payload[1]["date"], "2018-10-13")
