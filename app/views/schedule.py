@@ -66,3 +66,21 @@ class ScheduleGetByDateView(Resource):
                                     "description": schedule.description}
             )
         return payload, 200
+
+
+class ScheduleGetByRoomView(Resource):
+
+    def get(self, room_name):
+        try:
+            schedules = ScheduleController().get_schedule_by_room_name(room_name)
+        except RoomNotFoundError:
+            return "", 204
+
+        payload = {"schedules": []}
+        for schedule in schedules:
+            payload["schedules"].append(
+                {"id": schedule.id, "date": schedule.date.strftime("%Y-%m-%d"),
+                 "room_name": schedule.room.name, "user_name": schedule.user.name,
+                                    "description": schedule.description}
+            )
+        return payload, 200

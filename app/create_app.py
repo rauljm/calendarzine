@@ -5,7 +5,7 @@ from flask_migrate import Migrate
 from app.models import db
 from app.views.user import UserView, UserGetByIdView, UserGetByNameView
 from app.views.room import RoomView, RoomGetByIdView, RoomGetByNameView
-from app.views.schedule import ScheduleView, ScheduleGetByIdView, ScheduleGetByDateView
+from app.views.schedule import ScheduleView, ScheduleGetByIdView, ScheduleGetByDateView, ScheduleGetByRoomView
 
 
 def create_app(testing=False):
@@ -23,6 +23,8 @@ def create_app(testing=False):
     api.add_resource(ScheduleView, "/schedule/")
     api.add_resource(ScheduleGetByIdView, "/schedule/<int:_id>")
     api.add_resource(ScheduleGetByDateView, "/schedule/<string:date>")
+
+    api.add_resource(ScheduleGetByRoomView, "/schedule/room/<string:room_name>")
 
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/app.db'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False

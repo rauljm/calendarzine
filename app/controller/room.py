@@ -34,6 +34,7 @@ class RoomController:
         room = Room.query.filter(Room.id == _id).first()
         if room:
             room.description = description
+            db.session.flush()
             db.session.commit()
             return
         raise RoomNotFoundError()
