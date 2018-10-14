@@ -1,7 +1,7 @@
 # Calendarzine
 --
 ##### Essa aplicação possui os seguintes objetivos:
----
+
 Prover uma API para:
 
 - Editar e remover agendamentos.
